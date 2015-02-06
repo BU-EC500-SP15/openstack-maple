@@ -1,0 +1,28 @@
+0. Start VM:
+  vagrant up
+
+1. To setup devstack:
+
+  sudo apt-get install git
+  git clone https://git.openstack.org/openstack-dev/devstack
+  cp /vagrant/local.conf ~/devstack/
+  /home/devstack/stack.sh
+
+2. Try some commands:
+
+  source ~/devstack/openrc admin admin
+  keystone user-list
+  
+You can try things from here: http://docs.openstack.org/user-guide/content/app_cheat_sheet.html
+
+For example, you can boot an instance like this:
+
+  nova list
+  nova boot --image cirros-0.3.2-x86_64-uec --flavor m1.tiny MyFirstInstance
+
+Then run this until the status of the instance is ACTIVE
+  nova list
+  
+Then you can log in to:
+  ssh cirros@10.0.0.2 
+password is "cubswin:)"
