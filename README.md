@@ -1,5 +1,5 @@
 # openstack-maple
-Programmable OpenStack Network Services in Maple
+Maple in OpenDaylight
 
 Mentor: Andreas Voellmy
 
@@ -7,16 +7,22 @@ Team Members: Cody Doucette, Yao Xiao, Guanchen Zhang, Shigang Zhu
 
 ## Vision and Goals Of The Project
 The goals of this project are to:
- * collaborate with a team at Cisco Systems and Yale University to bring the Maple programming abstraction to the ODL controller platform.
- * port a significant network application, namely an implementation of the OpenStack Neutron network service onto the Maple service in ODL.
- * evaluate various aspects of the resulting system.
- * explore novel network services enabled by integrating this programming abstraction into an OpenStack system.
+ * collaborate with a team at Cisco Systems and Yale University to bring the
+   Maple programming abstraction to the OpenDaylight (ODL) controller platform, and
+ * build a collection of sample applications for ODL that demonstrate how to use
+   the Maple programming model in ODL. 
 
 ## Users/Personas Of The Project
-The users of the project would initially be network researchers exploring ways making the network control plane simpler using tools like OpenStack, ODL, and Maple. Eventually, if this project were deployed (in campus networks, perhaps), the users would be network administrators so that they may exercise more fine-grained control over traffic flows with respect to performance and policy.
+The key consumers of the project are the ODL developer community and commercial
+users of the ODL controller.
 
 ## Scope and Features Of The Project
-This project will port the Maple programming abstraction to the ODL controller platform and will port an implementation of hte OpenStack Neutron network service onto that service.
+Currently, Maple has components written in Java and Haskell. This project will
+port the remaining key components of Maple into Java. These include
+ * Execution trace (aka trace) minimization;
+ * Build trace tree using sequence of traces;
+ * Compile trace tree to flow tables;
+ * Push flow tables to ODL flow manager.
 
 ## Solution Concept
 This section provides a high-level outline of the solution.
