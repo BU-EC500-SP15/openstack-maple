@@ -1,4 +1,4 @@
-# openstack-maple
+# Maple in OpenDaylight
 Maple in OpenDaylight
 
 Mentor: Andreas Voellmy
