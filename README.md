@@ -26,22 +26,49 @@ users of the ODL controller.
 ## Scope and Features Of The Project
 Currently, Maple has components written in Java and Haskell. This project will
 port the remaining key components of Maple into Java. These include
- * Execution trace (aka trace) minimization;
+
  * Build trace tree using sequence of traces;
  * Compile trace tree to flow tables;
  * Push flow tables to ODL flow manager.
+ * Execution trace (aka trace) minimization;
+ * Expose Maple program state via ODL REST/MD-SAL interfaces.
+
+By the end of the project, the following example programs should run on
+Maple-in-ODL:
+ * Learning switch controller
+ * Learning switch controller with port-based security
+ * Learning switch controller with ACLs
+ * IP forwarding example
 
 ## Solution Concept
 This section provides a high-level outline of the solution.
 
 Global Architectural Structure Of the Project:
-This section provides a high-level architecture or a conceptual diagram showing the scope of the solution. If wireframes or visuals have already been done, this section could also be used to show how the intended solution will look. This section also provides a walkthrough explanation of the architectural structure.
+This section provides a high-level architecture or a conceptual diagram showing
+the scope of the solution. If wireframes or visuals have already been done, this
+section could also be used to show how the intended solution will look. This
+section also provides a walkthrough explanation of the architectural structure.
+ * Maple library that includes the following
+   * Packet abstract class
+   * MapleFunction base class, providing overridable functions, and which
+     implements tracing execution.
+   * MapleVariable, MapleSet, and MapleMap classes
+   * TraceTree class, with methods to add traces, remove traces, and compile to
+     flow table.
+   * FlowManager, that provides a translation between the flow rules output from
+     TraceTree and writes to ODL's component responsible for managing flow rules
+     on devices.
 
 Design Implications and Discussion:
 This section discusses the implications and reasons of the design decisions made during the global architecture design.
 
 ## Acceptance Criteria
-This section discusses the minimum acceptance criteria at the end of the project and stretch goals.
+The minimum acceptance criteria are a basic port of Maple that may be
+inefficient (e.g. may not provide optimized compilation, or precise invalidations), but which faithfully
+executes simple Maple programs listed in the project goals.  Stretch goals will
+be to smoothly integrate with ODL's MD-SAL to provide access to a Maple
+program's state via the MD-SAL methods (e.g. REST APIs) and stores the system
+state in the persistent storage of ODL.
 
 ## Release Planning
 Release planning section describes how the project will deliver incremental sets of features and functions in a series of releases to completion. Identification of user stories associated with iterations that will ease/guide sprint planning sessions is encouraged. Higher level details for the first iteration is expected.
