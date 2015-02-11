@@ -12,7 +12,6 @@ OpenDaylight (ODL) has emerged as one of the leading Software-Defined Network co
 One key limitation in ODL today is the lack of modularity: many important network applications do not play nicely together. Typically, these ODL network applications assume full control over network element configurations and hence do not compose well with other applications.
 
 Recent work in SDN provides network programming abstractions that promise to make it possible to write applications in a modular way, with components written independently and then combined at a semantic -- rather than configuration -- level. In particular, the Maple programming abstraction, allows programs written in ordinary programming language to be transparently deployed onto high-performance switching hardware through a dynamic translation of the program into the OpenFlow switch abstraction.
-The Maple SDN programming 
 
 The goals of this project are to:
  * Port the Maple programming abstraction to the OpenDaylight (ODL) controller
