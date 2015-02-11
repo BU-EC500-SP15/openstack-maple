@@ -85,7 +85,7 @@ expected.
 
  * Release #2 (due by Week 7): Basic tracing, trace tree, and compilation.
    * Collect execution traces.
-   * Build trace tree with only V and L nodes (see Maple paper for details on terminology).
+   * Build trace tree with only V and L nodes (see [Maple paper](http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf) for details on terminology).
    * Simple, naive compilation of trace tree to flow table.
    * Push updated flow table to ODL's flow manager.
    * Only works with examples whose system state is constant (e.g. fixed host
@@ -99,7 +99,7 @@ expected.
    * Support learning switch and port-based security examples.
    
  * Release #4 (due by Week 11): ACLs
-   * Support assertions and T nodes (see Maple papers for terminology)
+   * Support assertions and T nodes (see [Maple paper](http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf) for terminology)
    * Improved compilation with T nodes.
    * Trace minimization via BDD library.
 
