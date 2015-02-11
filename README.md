@@ -14,7 +14,7 @@ One key limitation in ODL today is the lack of modularity: many important networ
 Recent work in SDN provides network programming abstractions that promise to make it possible to write applications in a modular way, with components written independently and then combined at a semantic -- rather than configuration -- level. In particular, the [Maple programming abstraction](http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf), allows programs written in ordinary programming language to be transparently deployed onto high-performance switching hardware through a dynamic translation of the program into the OpenFlow switch abstraction.
 
 The goals of this project are to:
- * Port the Maple programming abstraction to ODL, in collaboration with a tema
+ * Port the Maple programming abstraction to ODL, in collaboration with a team
    at Cisco Systems and Yale University, and
  * build a collection of sample applications for ODL that demonstrate how to use
    the Maple programming model in ODL. 
