@@ -77,9 +77,32 @@ of user stories associated with iterations that will ease/guide sprint planning
 sessions is encouraged. Higher level details for the first iteration is
 expected.
 
- * Release #1 (due by Week 5):
+ * Release #1 (due by Week 5): Basic infrastructure.
    * Maple programming API which handles all packets at the controller with no
      rule generation or tracing.
    * Simple learning switch example and port-based security.
    * Demonstration of running system against a Mininet-simulated network.
+
+ * Release #2 (due by Week 7): Basic tracing, trace tree, and compilation.
+   * Collect execution traces.
+   * Build trace tree with only V and L nodes (see Maple paper for details on terminology).
+   * Simple, naive compilation of trace tree to flow table.
+   * Push updated flow table to ODL's flow manager.
+   * Only works with examples whose system state is constant (e.g. fixed host
+     location tables)
+   
+ * Release #3 (due by Week 9): System state
+   * Only cache execution trace if system state components are unchanged.
+   * When system state component is changed, clear the trace tree and remove
+     flow table entries.
+   * Support editing of state components via REST or via ODL's MD-SAL.
+   * Support learning switch and port-based security examples.
+   
+ * Release #4 (due by Week 11): ACLs
+   * Support assertions and T nodes (see Maple papers for terminology)
+   * Improved compilation with T nodes.
+   * Trace minimization via BDD library.
+
+ * Release #5 (due by Week 13):
+
 
