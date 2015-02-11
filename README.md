@@ -71,5 +71,15 @@ program's state via the MD-SAL methods (e.g. REST APIs) and stores the system
 state in the persistent storage of ODL.
 
 ## Release Planning
-Release planning section describes how the project will deliver incremental sets of features and functions in a series of releases to completion. Identification of user stories associated with iterations that will ease/guide sprint planning sessions is encouraged. Higher level details for the first iteration is expected.
+Release planning section describes how the project will deliver incremental sets
+of features and functions in a series of releases to completion. Identification
+of user stories associated with iterations that will ease/guide sprint planning
+sessions is encouraged. Higher level details for the first iteration is
+expected.
+
+ * Release #1 (due by Week 5):
+   * Maple programming API which handles all packets at the controller with no
+     rule generation or tracing.
+   * Simple learning switch example and port-based security.
+   * Demonstration of running system against a Mininet-simulated network.
 
