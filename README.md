@@ -41,31 +41,45 @@ Maple-in-ODL:
  * IP forwarding example
 
 ## Solution Concept
-This section provides a high-level outline of the solution.
 
-Global Architectural Structure Of the Project:
-This section provides a high-level architecture or a conceptual diagram showing
-the scope of the solution. If wireframes or visuals have already been done, this
-section could also be used to show how the intended solution will look. This
-section also provides a walkthrough explanation of the architectural structure.
- * Maple library that includes the following
-   * Packet abstract class
-   * MapleFunction base class, providing overridable functions, and which
+Global Architectural Structure of the Project:
+ 
+A Maple library that includes the following:
+
+   * `Packet` abstract class.
+   * `MapleFunction` base class, providing overridable functions, and which
      implements tracing execution.
-   * MapleVariable, MapleSet, and MapleMap classes
-   * TraceTree class, with methods to add traces, remove traces, and compile to
-     flow table.
-   * FlowManager, that provides a translation between the flow rules output from
-     TraceTree and writes to ODL's component responsible for managing flow rules
-     on devices.
+   * `MapleVariable`, `MapleSet`, and `MapleMap` classes.
+   * `TraceTree` class, with methods to add traces, remove traces, and compile
+     to flow table.
+   * `FlowManager`, that provides a translation between the flow rules output
+     from `TraceTree` and writes to ODL's component responsible for managing
+     flow rules on devices.
 
 Design Implications and Discussion:
-This section discusses the implications and reasons of the design decisions made during the global architecture design.
+
+To bring Maple to ODL, the minimum set of required functionality is
+conceptually in the classes listed above, although other supporting
+classes may be necessary. The design decisions above -- and the design of
+Maple in general -- were made with computational demand in mind. For example,
+the trace tree is needed to be able to reuse previous computations and
+offload work to switches, which enables algorithmic policies to be
+implemented efficiently.
+
+Additionally, porting Maple will require implementing components that
+be continually extended in a modular way, which is a natural fit for a
+language that supports inheritance and polymorphism like Java.
+For example, this port should of course be able to handle different types
+of packets, including protocols that are not currently defined. An abstract
+`Packet` class is a perfect for this, since more specific subclasses
+can be created at any time and plugged in. The same idea holds for the
+`MapleFunction` class, which can be extended (and overridden) to support
+new algorithmic policies.
 
 ## Acceptance Criteria
-The minimum acceptance criteria are a basic port of Maple that may be
+The minimum acceptance criterion is a basic port of Maple that may be
 inefficient (e.g. may not provide optimized compilation, or precise invalidations), but which faithfully
-executes simple Maple programs listed in the project goals.  Stretch goals will
+executes simple Maple programs listed in the project goals. Stretch goals will
 be to smoothly integrate with ODL's MD-SAL to provide access to a Maple
 program's state via the MD-SAL methods (e.g. REST APIs) and stores the system
 state in the persistent storage of ODL.
