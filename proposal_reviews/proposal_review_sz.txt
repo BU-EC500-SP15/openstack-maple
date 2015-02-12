@@ -5,4 +5,4 @@ Review of Proposal:
 	
 	As the Maple programming model is written is Haskell and Java. This project aims to port part of Maple into Java including compilation component, flow manager interaction and interface integration. 
 	
-	Since the project is about porting and existing project into ODL, the design and and architecture will strictly follow the existing project, Maple. As we are implementing Maple into Java, it is important to analyse the feasibility of porting key components in Maple into Java and ODL. 
+	Since the project is about porting an existing project into ODL, the design and and architecture will strictly follow the existing project, Maple. As we are implementing Maple into Java, it is important to analyse the feasibility of porting key components in Maple into Java and ODL. 
