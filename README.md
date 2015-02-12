@@ -21,7 +21,11 @@ The goals of this project are to:
 
 ## Users/Personas Of The Project
 The key consumers of the project are the ODL developer community and commercial
-users of the ODL controller.
+users of the ODL controller. Porting Maple to ODL would enable commercial
+users to simplify their SDN infrastructures because they will be able to
+use a standard programming language to specify their policies and have those
+policies implemented in an efficient way. This port will be a key stepping
+stone in allowing simpler programming abstractions to be used in SDN.
 
 ## Scope and Features Of The Project
 Currently, Maple has components written in Java and Haskell. This project will
@@ -67,14 +71,14 @@ offload work to switches, which enables algorithmic policies to be
 implemented efficiently.
 
 Additionally, porting Maple will require implementing components that
-be continually extended in a modular way, which is a natural fit for a
+can be continually extended in a modular way, which is a natural fit for a
 language that supports inheritance and polymorphism like Java.
 For example, this port should of course be able to handle different types
 of packets, including protocols that are not currently defined. An abstract
 `Packet` class is a perfect for this, since more specific subclasses
 can be created at any time and plugged in. The same idea holds for the
-`MapleFunction` class, which can be extended (and overridden) to support
-new algorithmic policies.
+`MapleFunction` class, which can be extended (and its methods overridden) to
+support new algorithmic policies.
 
 ## Acceptance Criteria
 The minimum acceptance criterion is a basic port of Maple that may be
