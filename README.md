@@ -7,7 +7,7 @@ Team Members: Cody Doucette, Yao Xiao, Guanchen Zhang, Shigang Zhu
 
 ## Vision and Goals Of The Project
 
-[OpenDaylight (ODL)](http://www.opendaylight.org) has emerged as one of the leading Software-Defined Network controllers. It is supported by a large number of major vendors (Brocade, Cisco, Citrix, Dell, HP, IBM, Intel, …). This platform is gaining traction and now supports a variety of applications including applications for network virtualization and cloud (OpenStack).
+[OpenDaylight (ODL)](http://www.opendaylight.org) has emerged as one of the leading Software-Defined Network controllers. The goal of OpenDayLight is to promote and accelerate an community-led and industry-supported open source framework. To allow the industry to focus on the application parts in stead of struggling to design different SDN controllers. Therefore, it is supported by a large number of major vendors (Brocade, Cisco, Citrix, Dell, HP, IBM, Intel, …). This platform is gaining traction and now supports a variety of applications including applications for network virtualization and cloud (OpenStack).
 
 One key limitation in ODL today is the lack of modularity: many important network applications do not play nicely together. Typically, these ODL network applications assume full control over network element configurations and hence do not compose well with other applications.
 
