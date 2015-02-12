@@ -1,8 +1,0 @@
-Review of Proposal:
-
-
-	Since the ODL project lacks modularity, by using MD-SAL design, the Maple programming model will provides an abstraction enabling modular programing and sematic-level combination of components. 
-	
-	As the Maple programming model is written is Haskell and Java. This project aims to port part of Maple into Java including compilation component, flow manager interaction and interface integration. 
-	
-	Since the project is about porting and existing project into ODL, the design and and architecture will strictly follow the existing project, Maple. As we are implementing Maple into Java, it is important to analyse the feasibility of porting key components in Maple into Java and ODL. 
