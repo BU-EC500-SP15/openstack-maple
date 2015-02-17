@@ -1,0 +1,24 @@
+I added some content to the Solution Concept section about the design
+implications of the project, including a very basic perspective on why
+certain classes are needed and why Java is a good fit for this implementation
+based on my understanding so far. I also added some content to the
+Users/Personas of the Project to provide some motivation for why this is
+important work.
+
+I also have a few comments about the proposal itself:
+
+ * There will be a considerable learning curve at the beginning of the
+   project, as we need to first understand the ODL codebase that we'll
+   be working with and understand Maple before we start writing code. I
+   think it may be reasonable to extend the first release by one week,
+   but would hesitate to change anything besides that, since I know that
+   there is a lot to do and not much time.
+
+ * I'm not sure where this fits into the proposal -- if it does at all --
+   but I think we definitely need some kind of code reviews. This is for
+   two reasons. First, I think it's a good opportunity for everyone to
+   grow as programmers, and secondly, we need to ensure that any code
+   proposed for contribution to ODL is of high quality. These code reviews
+   could be between Andi and the students, or simply amongst the students
+   themselves.
+
