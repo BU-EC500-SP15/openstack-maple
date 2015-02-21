@@ -1,0 +1,3 @@
+[submodule "MapleCore"]
+	path = MapleCore
+	url = https://github.com/zhushigang/MapleCore.git
