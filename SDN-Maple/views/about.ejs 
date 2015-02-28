@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Maple - Simplify SDN</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/1-col-portfolio.css" rel="stylesheet">
+
+  </head>
+  <body>
+   
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Maple</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="#">OpenDayLight API</a>
+                    </li>
+                    <li>
+                        <a href="#">Tutorials</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Maple
+                    <small>Maple to OpenDayLight</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project One -->
+        <div class="row">
+                        <div class="col-md-10">
+                <p>Maple in OpenDaylight</p>
+
+<p>Mentor: Andreas Voellmy</p>
+
+<p>Team Members: Cody Doucette, Yao Xiao, Guanchen Zhang, Shigang Zhu</p>
+
+<h2>
+<a id="user-content-vision-and-goals-of-the-project" class="anchor" href="#vision-and-goals-of-the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vision and Goals Of The Project</h2>
+
+<p><a href="http://www.opendaylight.org">OpenDaylight (ODL)</a> has emerged as one of the leading Software-Defined Network controllers. The goal of OpenDayLight is to promote and accelerate an community-led and industry-supported open source framework. To allow the industry to focus on the application parts in stead of struggling to design different SDN controllers. Therefore, it is supported by a large number of major vendors (Brocade, Cisco, Citrix, Dell, HP, IBM, Intel, …). This platform is gaining traction and now supports a variety of applications including applications for network virtualization and cloud (OpenStack).</p>
+
+<p>One key limitation in ODL today is the lack of modularity: many important network applications do not play nicely together. Typically, these ODL network applications assume full control over network element configurations and hence do not compose well with other applications.</p>
+
+<p>Recent work in SDN provides network programming abstractions that promise to make it possible to write applications in a modular way, with components written independently and then combined at a semantic -- rather than configuration -- level. In particular, the <a href="http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf">Maple programming abstraction</a>, allows programs written in ordinary programming language to be transparently deployed onto high-performance switching hardware through a dynamic translation of the program into the OpenFlow switch abstraction.</p>
+
+<p>The goals of this project are to:</p>
+
+<ul class="task-list">
+<li>Port the Maple programming abstraction to ODL, in collaboration with a team
+at Cisco Systems and Yale University, and</li>
+<li>build a collection of sample applications for ODL that demonstrate how to use
+the Maple programming model in ODL. </li>
+</ul>
+
+<h2>
+<a id="user-content-userspersonas-of-the-project" class="anchor" href="#userspersonas-of-the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Users/Personas Of The Project</h2>
+
+<p>The key consumers of the project are the ODL developer community and commercial
+users of the ODL controller. Porting Maple to ODL would enable commercial
+users to simplify their SDN infrastructures because they will be able to
+use a standard programming language to specify their policies and have those
+policies implemented in an efficient way. This port will be a key stepping
+stone in allowing simpler programming abstractions to be used in SDN.</p>
+
+<h2>
+<a id="user-content-scope-and-features-of-the-project" class="anchor" href="#scope-and-features-of-the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scope and Features Of The Project</h2>
+
+<p>Currently, Maple has components written in Java and Haskell. This project will
+port the remaining key components of Maple into Java. These include</p>
+
+<ul class="task-list">
+<li>Build trace tree using sequence of traces;</li>
+<li>Compile trace tree to flow tables;</li>
+<li>Push flow tables to ODL flow manager.</li>
+<li>Execution trace (aka trace) minimization;</li>
+<li>Expose Maple program state via ODL REST/MD-SAL interfaces.</li>
+</ul>
+
+<p>By the end of the project, the following example programs should run on
+Maple-in-ODL:</p>
+
+<ul class="task-list">
+<li>Learning switch controller</li>
+<li>Learning switch controller with port-based security</li>
+<li>Learning switch controller with ACLs</li>
+<li>IP forwarding example</li>
+</ul>
+
+<h2>
+<a id="user-content-solution-concept" class="anchor" href="#solution-concept" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solution Concept</h2>
+
+<p>Global Architectural Structure of the Project:</p>
+
+<p>A Maple library that includes the following:</p>
+
+<ul class="task-list">
+<li>
+<code>Packet</code> abstract class.</li>
+<li>
+<code>MapleFunction</code> base class, providing overridable functions, and which
+ implements tracing execution.</li>
+<li>
+<code>MapleVariable</code>, <code>MapleSet</code>, and <code>MapleMap</code> classes.</li>
+<li>
+<code>TraceTree</code> class, with methods to add traces, remove traces, and compile
+ to flow table.</li>
+<li>
+<code>FlowManager</code>, that provides a translation between the flow rules output
+ from <code>TraceTree</code> and writes to ODL's component responsible for managing
+ flow rules on devices.</li>
+</ul>
+
+<p>Design Implications and Discussion:</p>
+
+<p>To bring Maple to ODL, the minimum set of required functionality is
+conceptually in the classes listed above, although other supporting
+classes may be necessary. The design decisions above -- and the design of
+Maple in general -- were made with computational demand in mind. For example,
+the trace tree is needed to be able to reuse previous computations and
+offload work to switches, which enables algorithmic policies to be
+implemented efficiently.</p>
+
+<p>Additionally, porting Maple will require implementing components that
+can be continually extended in a modular way, which is a natural fit for a
+language that supports inheritance and polymorphism like Java.
+For example, this port should of course be able to handle different types
+of packets, including protocols that are not currently defined. An abstract
+<code>Packet</code> class is a perfect for this, since more specific subclasses
+can be created at any time and plugged in. The same idea holds for the
+<code>MapleFunction</code> class, which can be extended (and its methods overridden) to
+support new algorithmic policies.</p>
+
+<h2>
+<a id="user-content-acceptance-criteria" class="anchor" href="#acceptance-criteria" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acceptance Criteria</h2>
+
+<p>The minimum acceptance criterion is a basic port of Maple that may be
+inefficient (e.g. may not provide optimized compilation, or precise invalidations), but which faithfully
+executes simple Maple programs listed in the project goals. Stretch goals will
+be to smoothly integrate with ODL's MD-SAL to provide access to a Maple
+program's state via the MD-SAL methods (e.g. REST APIs) and stores the system
+state in the persistent storage of ODL.</p>
+
+<h2>
+<a id="user-content-release-planning" class="anchor" href="#release-planning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release Planning</h2>
+
+<p>Release planning section describes how the project will deliver incremental sets
+of features and functions in a series of releases to completion. Identification
+of user stories associated with iterations that will ease/guide sprint planning
+sessions is encouraged. Higher level details for the first iteration is
+expected.</p>
+
+<ul class="task-list">
+<li>
+<p>Release #1 (due by Week 5  Feb 25): Basic infrastructure.</p>
+
+<ul class="task-list">
+<li>Maple programming API which handles all packets at the controller with no
+rule generation or tracing.</li>
+<li>Simple learning switch example and port-based security.</li>
+<li>Demonstration of running system against a Mininet-simulated network.</li>
+</ul>
+</li>
+<li>
+<p>Release #2 (due by Week 7  Mar 11): Basic tracing, trace tree, and compilation.</p>
+
+<ul class="task-list">
+<li>Collect execution traces.</li>
+<li>Build trace tree with only V and L nodes (see <a href="http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf">Maple paper</a> for details on terminology).</li>
+<li>Simple, naive compilation of trace tree to flow table.</li>
+<li>Push updated flow table to ODL's flow manager.</li>
+<li>Only works with examples whose system state is constant (e.g. fixed host
+location tables)</li>
+</ul>
+</li>
+<li>
+<p>Release #3 (due by Week 9  Mar 25): System state</p>
+
+<ul class="task-list">
+<li>Only cache execution trace if system state components are unchanged.</li>
+<li>When system state component is changed, clear the trace tree and remove
+flow table entries.</li>
+<li>Support editing of state components via REST or via ODL's MD-SAL.</li>
+<li>Support learning switch and port-based security examples.</li>
+</ul>
+</li>
+<li>
+<p>Release #4 (due by Week 11  Apr 08): ACLs</p>
+
+<ul class="task-list">
+<li>Support assertions and T nodes (see <a href="http://haskell.cs.yale.edu/wp-content/uploads/2013/08/comm282-voellmy.pdf">Maple paper</a> for terminology)</li>
+<li>Improved compilation with T nodes.</li>
+<li>Trace minimization via BDD library.</li>
+</ul>
+</li>
+<li><p>Release #5 (due by Week 13  Apr 22):</p></li>
+</ul>
+                
+            </div>
+           
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Maple Group 2015</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

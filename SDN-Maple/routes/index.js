@@ -10,6 +10,9 @@ router.get('/tutorials', function(req, res, next) {
   res.render('tutorial', { title: 'Express' });
 });
 
+router.get('/about', function(req, res, next) {
+  res.render('intro', { title: 'Express' });
+});
 
 
 module.exports = router;
