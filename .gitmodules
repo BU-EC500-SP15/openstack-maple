@@ -1,3 +1,6 @@
 [submodule "MapleCore"]
 	path = MapleCore
 	url = https://github.com/zhushigang/MapleCore.git
+[submodule "l2switch"]
+	path = l2switch
+	url = http://github.com/AndreasVoellmy/l2switch.git
