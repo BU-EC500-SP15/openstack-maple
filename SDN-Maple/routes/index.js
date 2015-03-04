@@ -11,7 +11,7 @@ router.get('/tutorials', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('intro', { title: 'Express' });
+  res.render('about', { title: 'Express' });
 });
 
 
