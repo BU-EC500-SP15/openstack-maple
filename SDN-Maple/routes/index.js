@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/tutorials', function(req, res, next) {
-  res.render('tutorial', { title: 'Express' });
+router.get('/tutorial', function(req, res, next) {
+  res.render('tutorials', { title: 'Express' });
 });
 
 router.get('/about', function(req, res, next) {
