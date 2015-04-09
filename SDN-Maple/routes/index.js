@@ -15,7 +15,7 @@ router.get('/about', function(req, res, next) {
 });
 
 router.get('/visualization', function(req, res, next) {
-  res.render('visualization', { });
+  res.render('visualization', { title: 'Express'});
 });
 
 

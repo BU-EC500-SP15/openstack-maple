@@ -1,10 +1,11 @@
-var w = 400,
-    h = 400;
+var w = 1000,
+    h = 600;
 
-//the width of the circle
 var circleWidth = 5;
 
-
+var fontFamily = 'Bree Serif',
+    fontSizeHighlight = '1.5em',
+    fontSizeNormal = '1em';
 
 var palette = {
       "lightgray": "#819090",
@@ -25,138 +26,141 @@ var palette = {
       "yellowgreen": "#738A05"
   }
 
-//adding the nodes
-//看得懂，但是target是谁定义的？现在看应该是d3
 var nodes = [
-  { name:"Parent"},
-  { name:"child1", target:[0]},
-  { name:"child2", target:[0]},
-  { name:"child3", target:[0]},
-  { name:"child4", target:[0]},
-  { name:"child5", target:[0]}
-
-];
-
-
-var links = [];
-
-//写一个javascript functions
-
-for (var i = 0; i<nodes.length; i++){
-  if (nodes[i].target !== undefined){
-    for (var x = 0; x < nodes[i].target.length;x++){
-      links.push({
-        source:nodes[i],
-        target:nodes[nodes[i].target[x]]
-      })
-    }
-  }
-}
+                    {"name": "ENG Router" },
+                    {"name": "switch1"},
+                    {"name": "switch2"},
+                    {"name": "switch3"},
+                    {"name": "wifi"},
+                    {"name":"Your Cell phone"},
+                    {"name":"Your Laptop"}
+               ]
 
 
-//在index.html 建立一个这样的<div id="chart"></div> 文件
-var myChart = d3.select("#chart")
-    .append('svg')
-    .attr('width',w)
-    .attr('height', h)
+
+var links = [
+                  {source: nodes[1], target: nodes[0]},
+                  {source: nodes[2], target: nodes[0]},
+                  {source: nodes[3], target: nodes[0]},
+                  {source: nodes[4], target: nodes[1]},
+                  {source:nodes[5], target:nodes[4]},
+                  {source:nodes[6], target:nodes[4]}
+]
+  
 
 
-//第一个括号里是递交的nodes
+          
+
+var vis = d3.select("body")
+    .append("svg:svg")
+      .attr("class", "stage")
+      .attr("width", w)
+      .attr("height", h);
+
 var force = d3.layout.force()
     .nodes(nodes)
     .links([])
-    .gravity(0.1)
+    .gravity(0.2)
     .charge(-1000)
-    .size([w,h])
+    .size([w, h]);
 
-//这里selectAll('line') 是选择一个你将要创造的东西
-//links 是从上面的javascript里 push 进来的
+ var link = vis.selectAll(".link")
+        .data(links)
+        .enter().append("line")
+          .attr("class", "link")
+          .attr("stroke", "#CCC")
+          .attr("fill", "none");
 
-var link = myChart.selectAll('line')
-      .data(links).enter().append('line')
-      .attr('stroke', palette.gray)
+ var node = vis.selectAll("circle.node")
+      .data(nodes)
+      .enter().append("g")
+      .attr("class", "node")
 
+      //MOUSEOVER
+      .on("mouseover", function(d,i) {
+        if (i>0) {
+          //CIRCLE
+          d3.select(this).selectAll("circle")
+          .transition()
+          .duration(250)
+          .style("cursor", "none")     
+          .attr("r", circleWidth+3)
+          .attr("fill",palette.orange);
 
-// append('g') = append group
-// call是把之前定义的force variable method叫出来
-var node = myChart.selectAll('circle')
-      .data(nodes).enter()
-      .append('g')
+          //TEXT
+          d3.select(this).select("text")
+          .transition()
+          .style("cursor", "none")     
+          .duration(250)
+          .style("cursor", "none")     
+          .attr("font-size","1.5em")
+          .attr("x", 15 )
+          .attr("y", 5 )
+        } else {
+          //CIRCLE
+          d3.select(this).selectAll("circle")
+          .style("cursor", "none")     
+
+          //TEXT
+          d3.select(this).select("text")
+          .style("cursor", "none")     
+        }
+      })
+
+      //MOUSEOUT
+      .on("mouseout", function(d,i) {
+        if (i>0) {
+          //CIRCLE
+          d3.select(this).selectAll("circle")
+          .transition()
+          .duration(250)
+          .attr("r", circleWidth)
+          .attr("fill",palette.pink);
+
+          //TEXT
+          d3.select(this).select("text")
+          .transition()
+          .duration(250)
+          .attr("font-size","1em")
+          .attr("x", 8 )
+          .attr("y", 4 )
+        }
+      })
+
       .call(force.drag);
 
-node.append('circle')
-  .attr('cx', function(d) {return d.x;})
-  .attr('cy', function(d) {return d.y;})
-  .attr('r', circleWidth)
-  .attr('fill', palette.pink)
 
+    //CIRCLE
+    node.append("svg:circle")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", circleWidth)
+      .attr("fill", function(d, i) { if (i>0) { return  palette.pink; } else { return palette.paleryellow } } )
 
-//动画
+    //TEXT
+    node.append("text")
+      .text(function(d, i) { return d.name; })
+      .attr("x",            function(d, i) { if (i>0) { return circleWidth + 5; }   else { return -10 } })
+      .attr("y",            function(d, i) { if (i>0) { return circleWidth + 0 }    else { return 8 } })
+      .attr("font-family",  "Bree Serif")
+      .attr("fill",         function(d, i) { if (i>0) { return  palette.paleryellow; }
 
-force.on('tick', function(e){
-  node.attr('transform', function(d,i ){
-    return 'translate(' + d.x +', '+ d.y + ')';
-  })
-link
-  .attr('x1', function(d) {return d.source.x})
-  .attr('y1', function(d) {return d.source.y})
-  .attr('x2', function(d) {return d.target.x})
-  .attr('y2', function(d) {return d.target.y})
+                                       else { return palette.yellowgreen ;} })
 
-})
-
-force.start()
-
+      .attr("font-size",    function(d, i) { if (i>0) { return  "1em"; }            else { return "1.8em" } })
+      .attr("text-anchor",  function(d, i) { if (i>0) { return  "beginning"; }      else { return "end" } })
 
 
 
+force.on("tick", function(e) {
+  node.attr("transform", function(d, i) {     
+        return "translate(" + d.x + "," + d.y + ")"; 
+    });
+    
+   link.attr("x1", function(d)   { return d.source.x; })
+       .attr("y1", function(d)   { return d.source.y; })
+       .attr("x2", function(d)   { return d.target.x; })
+       .attr("y2", function(d)   { return d.target.y; })
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//nodes2 for cas
-
-var nodes2 = [
-  { name:"Parent"},
-  { name:"child1", target:[0]},
-  { name:"child2", target:[0]},
-  { name:"child3", target:[0]},
-  { name:"child4", target:[0]},
-  { name:"child5", target:[0]}
-];
-
-
-
-//目标：建立一个CAS的网络示意图
-
-var myChart2 = d3.select('#cas')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+force.start();
