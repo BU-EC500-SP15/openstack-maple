@@ -18,5 +18,8 @@ router.get('/visualization', function(req, res, next) {
   res.render('visualization');
 });
 
+router.get('/stepbystep', function(req, res, next) {
+  res.render('stepbystep');
+});
 
 module.exports = router;
