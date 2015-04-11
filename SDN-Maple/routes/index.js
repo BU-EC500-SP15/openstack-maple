@@ -6,16 +6,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/tutorial', function(req, res, next) {
+router.get('/tutorials', function(req, res, next) {
   res.render('tutorials', { title: 'Express' });
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'Express' });
+  res.render('about');
 });
 
 router.get('/visualization', function(req, res, next) {
-  res.render('visualization', { title: 'Express'});
+  res.render('visualization');
 });
 
 
