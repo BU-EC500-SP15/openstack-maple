@@ -8,9 +8,5 @@ printf "\nPATH=$PATH:/home/vagrant/apache-maven-3.3.1/bin\n" >> /home/vagrant/.p
 
 
 # Maple
-git clone https://github.com/zhushigang/MapleCore.git
-cd /home/vagrant/MapleCore && mvn clean install
-
-
-git clone -b BUstudent https://github.com/AndreasVoellmy/l2switch.git
-cd /home/vagrant/l2switch && mvn clean install
+git clone https://github.com/maplesdn/MapleCore.git
+git clone -b BUstudent https://github.com/maplesdn/odlmaple.git
