@@ -151,6 +151,7 @@ We have compiled a [video explanation and demonstration](https://www.youtube.com
     # In SSH session, start Apache Karaf container for ODL:
     ./distribution/karaf/target/assembly/bin/karaf
     ...
+    feature:install odl-l2switch-maple
     
     # In a NEW shell, start an SSH session and start Mininet:
     vagrant ssh
