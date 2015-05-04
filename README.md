@@ -123,4 +123,42 @@ expected.
 
  * Release #5 (due by Week 13  Apr 22):
 
+## Demo Instructions
 
+ # Clone the repository:
+ git clone https://github.com/BU-EC500-SP15/openstack-maple.git
+ ...
+
+ # Set-up the VM using vagrant and log-in:
+ cd openstack-maple/vagrant
+ vagrant up
+ ...
+ vagrant ssh
+ ...
+
+ # In SSH session, build MapleCore and odlmaple:
+ cd MapleCore
+ mvn clean install
+ ...
+ cd ../odlmaple
+ mvn clean install
+ ...
+
+ # In SSH session, start Apache Karaf container for ODL:
+ ./distribution/karaf/target/assembly/bin/karaf
+ ...
+
+ # In a NEW shell, start an SSH session and start Mininet:
+ vagrant ssh
+ ...
+ sudo mn --controller=remote,ip=10.0.2.15 --mac --topo=tree,depth=1,fanout=5
+
+ # In Mininet, check the flow tables and ping hosts:
+ sh ovs-ofctl dump-flows s1
+ ...
+ h1 ping h2
+ sh ovs-ofctl dump-flows s1
+ ...
+ pingall
+ ...
+ sh ovs-ofctl dump-flows s1
