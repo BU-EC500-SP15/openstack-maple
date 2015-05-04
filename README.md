@@ -123,6 +123,10 @@ expected.
 
  * Release #5 (due by Week 13  Apr 22):
 
+## Project Video
+
+We have compiled a [video explanation and demonstration](https://www.youtube.com/watch?v=YdHdLYYtbho&feature=youtu.be) of our project.
+
 ## Demo Instructions
 
     # Clone the repository:
